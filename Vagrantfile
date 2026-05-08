@@ -1,5 +1,5 @@
 Vagrant.configure(2) do |config|
-    config.vm.box = "debian/bookworm64"
+    config.vm.box = "ubuntu/jammy64"
 
     config.vm.define "donghankS" do |control|
         control.vm.hostname = "donghankS"
@@ -9,7 +9,7 @@ Vagrant.configure(2) do |config|
             "modifyvm", :id, 
             "--name", "donghankS",
             "--cpus", "1",
-            "--memory", "512"
+            "--memory", "1024"
           ]
         end
         control.vm.provision "shell", path: "setup.sh", args: ["server"]
@@ -23,7 +23,7 @@ Vagrant.configure(2) do |config|
           "modifyvm", :id,
           "--name", "donghankSW",
           "--cpus", "1",
-          "--memory", "512"
+          "--memory", "1024"
         ]
       end
       control.vm.provision "shell", path: "setup.sh", args: ["server-worker"]
