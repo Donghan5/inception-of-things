@@ -12,7 +12,7 @@ Vagrant.configure(2) do |config|
             "--memory", "1024"
           ]
         end
-        control.vm.provision "shell", path: "setup.sh", args: ["server"]
+        control.vm.provision "shell", path: "scripts/setup.sh", args: ["server"]
     end
 
     config.vm.define "donghankSW" do |control|
@@ -26,6 +26,6 @@ Vagrant.configure(2) do |config|
           "--memory", "1024"
         ]
       end
-      control.vm.provision "shell", path: "setup.sh", args: ["server-worker"]
+      control.vm.provision "shell", path: "scripts/setup.sh", args: ["server-worker"]
     end
   end
