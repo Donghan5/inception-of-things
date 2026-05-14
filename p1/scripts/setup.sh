@@ -2,9 +2,8 @@
 
 set -e
 
-echo "---- Update and upgrade apt packages ----"
+echo "---- Update apt packages ----"
 sudo apt update -y
-sudo apt upgrade -y
 
 echo "---- Install utilities ----"
 sudo apt install -y curl wget git vim net-tools
