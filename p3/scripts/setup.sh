@@ -7,7 +7,7 @@ CONFS_DIR="$SCRIPT_DIR/../confs"
 
 # Making K3d cluster and setting up kubectl context
 echo "=== Setting up K3d cluster... ==="
-k3d cluster create iot --port "8888:8888@loadbalancer" --wait
+k3d cluster create iot --wait
 
 kubectl create namespace argocd --dry-run=client -o yaml | kubectl apply -f -
 kubectl create namespace dev --dry-run=client -o yaml | kubectl apply -f -
