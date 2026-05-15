@@ -34,6 +34,12 @@ sudo kubectl wait --for=condition=Available deployment/traefik \
 echo "---- Applying app manifests ----"
 sudo kubectl apply -f /vagrant/confs/
 
+echo "---- Waiting for apps to be reachable ----"
+until curl -s -o /dev/null -w "%{http_code}" -H "Host: app1.com" http://192.168.56.110 | grep -q "200"; do
+    echo "Waiting for app1 to respond..."
+    sleep 5
+done
+
 echo "---- Cluster status ----"
 sudo kubectl get pods -A
 sudo kubectl get ingress

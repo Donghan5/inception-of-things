@@ -14,11 +14,12 @@ spec:
     spec:
       containers:
       - name: app2
-        image: "nginx:alpine"
-        command: ["/bin/sh"]
-        args: ["-c", "echo 'app2' > /usr/share/nginx/html/index.html && nginx -g 'daemon off;'"]
+        image: paulbouwer/hello-kubernetes:1.10
         ports:
-        - containerPort: 80
+        - containerPort: 8080
+        env:
+        - name: MESSAGE
+          value: "Hello from App 2"
 
 ---
 
@@ -31,4 +32,4 @@ spec:
     app: app2
   ports:
   - port: 80
-    targetPort: 80
+    targetPort: 8080
