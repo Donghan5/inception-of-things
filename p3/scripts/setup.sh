@@ -5,6 +5,12 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONFS_DIR="$SCRIPT_DIR/../confs"
 
+# Verifying k3d cluster is already exists and if exists delete it
+if k3d cluster list | grep -q "^iot"; then
+    echo " === Deleting existing k3d cluster === "
+    k3d cluster delete iot
+fi
+
 # Making K3d cluster and setting up kubectl context
 echo "=== Setting up K3d cluster... ==="
 k3d cluster create iot --wait
